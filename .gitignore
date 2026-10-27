@@ -1,0 +1,60 @@
+# IDE and editor settings
+.idea/
+*.iml
+.vscode/
+
+# Python virtual environments
+node_modules/
+.venv/
+venv/
+env/
+
+# Python caches and tooling
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+.coverage.*
+htmlcov/
+
+# Packaging and build output
+build/
+dist/
+out/
+*.egg-info/
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+
+# Local databases and research data
+data/**
+!data/.gitkeep
+*.duckdb
+*.duckdb.wal
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+*.parquet
+
+# Generated TongDaXin exports
+formulas/generated/
+
+# Logs and temporary files
+logs/
+*.log
+tmp/
+temp/
+*.tmp
+
+# Operating-system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+

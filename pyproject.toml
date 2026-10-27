@@ -1,0 +1,49 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "stock-research"
+version = "0.1.0"
+description = "本地自主公司研究助手"
+requires-python = ">=3.12"
+dependencies = [
+  "fastapi>=0.115,<1",
+  "uvicorn>=0.34,<1",
+  "httpx>=0.28,<1",
+  "pydantic-settings>=2.8,<3",
+  "langgraph>=1,<2",
+  "langgraph-checkpoint-sqlite>=3,<4",
+  "aiosqlite>=0.21,<1",
+  "qdrant-client>=1.19,<2",
+  "ddgs>=9,<10",
+  "trafilatura>=2,<3",
+  "pypdf>=6,<7",
+  "cryptography>=46,<49",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8,<10", "pytest-asyncio>=1,<2", "ruff>=0.12,<1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+markers = [
+  "automatic_titles: 使用离线模型验证独立自动命名流程",
+  "security_names: 使用离线响应验证公开名称补全",
+  "stock_data: 使用离线响应验证股票数据与工具",
+]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "ASYNC"]
+
+[tool.ruff.lint.per-file-ignores]
+# 数据库轮询是集成测试的观测手段，生产任务不使用该等待逻辑。
+"tests/test_app.py" = ["ASYNC110"]
